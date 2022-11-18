@@ -25,6 +25,8 @@ class FormViewController: SubViewController, NSTextFieldDelegate {
             videoUrlTextField.stringValue = url
             loadVideoButton.isEnabled = true
         }
+        
+        videoUrlTextField.stringValue = UserDefaults.standard.string(forKey: "VIDEO_URL") ?? ""
     }
     
     func validUrlFromClipboard() -> String? {
@@ -56,6 +58,8 @@ class FormViewController: SubViewController, NSTextFieldDelegate {
         if !YouTubeUrlParser.isValidUrl(url: videoUrl) {
             return
         }
+        
+        UserDefaults.standard.set(videoUrl, forKey: "VIDEO_URL")
         
         getWindowController().loadVideoViewController(videoUrl: videoUrl)
     }
