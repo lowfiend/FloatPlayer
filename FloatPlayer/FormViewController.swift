@@ -26,7 +26,12 @@ class FormViewController: SubViewController, NSTextFieldDelegate {
             loadVideoButton.isEnabled = true
         }
         
-        videoUrlTextField.stringValue = UserDefaults.standard.string(forKey: "VIDEO_URL") ?? ""
+        let videoUrl = UserDefaults.standard.string(forKey: "VIDEO_URL") ?? ""
+        
+        if !videoUrl.isEmpty{
+            videoUrlTextField.stringValue = videoUrl
+            loadVideoButton.isEnabled = true
+        }
     }
     
     func validUrlFromClipboard() -> String? {
